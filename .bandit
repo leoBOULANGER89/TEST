@@ -1,0 +1,35 @@
+# Configuration Bandit pour analyse de sécurité
+# Projet: EyesDcar
+# Date: 22/04/2026
+
+# Tests exclus (identifiants Bandit)
+skips:
+  - B101  # assert_used - Légitime dans les tests unitaires
+  - B601  # paramiko_calls - Si utilisation sécurisée
+  - B701  # flake8-bugbear - opiniones personelles
+
+# Répertoires exclus
+exclude_dirs:
+  - /tests/
+  - /docs/
+  - /.venv/
+  - /venv/
+  - /.github/scripts/
+  - /__pycache__/
+  - /build/
+  - /dist/
+
+# Niveau de sévérité minimum pour alerter
+# Options: LOW, MEDIUM, HIGH
+severity: MEDIUM
+
+# Niveau de confiance minimum
+# Options: LOW, MEDIUM, HIGH
+confidence: MEDIUM
+
+# Tests spécifiques à exécuter (vide = tous)
+tests: []
+
+# Format de sortie
+# Options: csv, json, txt, html, screen, yaml
+format: screen

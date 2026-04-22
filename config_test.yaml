@@ -1,0 +1,20 @@
+# Fichier YAML de test pour vérifier le hook check-yaml
+# Ce fichier est valide et devrait passer la vérification
+
+project:
+  name: eyesdcar
+  version: 1.0.0
+  description: Vehicle damage detection system
+
+models:
+  car_parts:
+    path: src/models/car_parts/model/best.pt
+    type: segmentation
+  car_damages:
+    detector: src/models/car_damages/model/detector/
+    segmentation: src/models/car_damages/model/segmentation/
+
+settings:
+  confidence_threshold: 0.5
+  iou_threshold: 0.45
+  max_detections: 100

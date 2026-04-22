@@ -1,0 +1,107 @@
+# GitHub Actions - Security Scan
+# Projet: EyesDcar TEST
+# Date: 22/04/2026
+# Description: Scan sécurité code (Bandit) et dépendances (Safety)
+
+name: Security Scan
+
+on:
+  push:
+    branches:
+      - 001-DEVELOPMENT
+      - 002-TEST
+      - 003-PRODUCTION
+  schedule:
+    - cron: '0 2 * * *'  # Quotidien à 2h du matin
+  workflow_dispatch:
+
+jobs:
+  # ═══════════════════════════════════════════════════════════
+  # JOB 1 : BANDIT - Scan code source
+  # ═══════════════════════════════════════════════════════════
+  bandit:
+    name: Bandit Security Scan
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: pip install bandit
+
+      - name: Run Bandit
+        run: |
+          bandit -r src/ -c .bandit -f json -o bandit-report.json || true
+
+      - name: Run Bandit (screen output)
+        run: bandit -r src/ -c .bandit -f screen || true
+
+      - name: Check for HIGH severity issues
+        run: |
+          if [ -f bandit-report.json ]; then
+            ISSUES=$(jq '[.results[] | select(.issue_severity == "HIGH")] | length' bandit-report.json 2>/dev/null || echo "0")
+            if [ "$ISSUES" -gt 0 ]; then
+              echo "Found $ISSUES HIGH severity issues!"
+              exit 1
+            fi
+          fi
+        shell: bash
+
+      - name: Upload Bandit report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bandit-report
+          path: bandit-report.json
+          retention-days: 30
+
+  # ═══════════════════════════════════════════════════════════
+  # JOB 2 : SAFETY - Scan dépendances Python
+  # ═══════════════════════════════════════════════════════════
+  safety:
+    name: Dependency Vulnerability Scan
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+
+      - name: Install Safety
+        run: pip install safety
+
+      - name: Run Safety check
+        run: |
+          safety check --json --output safety-report.json || true
+
+      - name: Check for vulnerabilities
+        run: |
+          if [ -f safety-report.json ]; then
+            VULNS=$(jq 'length' safety-report.json 2>/dev/null || echo "0")
+            if [ "$VULNS" -gt 0 ]; then
+              echo "Found vulnerabilities in dependencies!"
+              safety check || true
+            fi
+          fi
+        shell: bash
+
+      - name: Upload Safety report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: safety-report
+          path: safety-report.json
+          retention-days: 30

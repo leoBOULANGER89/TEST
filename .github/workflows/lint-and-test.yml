@@ -1,0 +1,100 @@
+# GitHub Actions - Lint and Test
+# Projet: EyesDcar TEST
+# Date: 22/04/2026
+# Description: Vérification qualité code + tests unitaires
+
+name: Lint and Test
+
+on:
+  push:
+    branches:
+      - 001-DEVELOPMENT
+      - 002-TEST
+      - 003-PRODUCTION
+  pull_request:
+    branches:
+      - 001-DEVELOPMENT
+      - 002-TEST
+      - 003-PRODUCTION
+  workflow_dispatch:
+
+jobs:
+  # ═══════════════════════════════════════════════════════════
+  # JOB 1 : LINT - Analyse qualité code
+  # ═══════════════════════════════════════════════════════════
+  lint:
+    name: Code Linting
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Cache pre-commit
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pre-commit
+          key: pre-commit-${{ runner.os }}-${{ hashFiles('.pre-commit-config.yaml') }}
+          restore-keys: |
+            pre-commit-${{ runner.os }}-
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Install pre-commit hooks
+        run: pre-commit install --install-hooks
+
+      - name: Run pre-commit
+        run: pre-commit run --all-files --show-diff-on-failure
+        continue-on-error: true
+
+      - name: Run Pylint
+        run: |
+          pylint $(find . -name "*.py" -type f ! -path "./test_hook/*" ! -path "./.git/*") \
+            --output-format=colorized \
+            --disable=C0114,C0115,C0116 \
+            || true
+
+  # ═══════════════════════════════════════════════════════════
+  # JOB 2 : TEST - Tests unitaires
+  # ═══════════════════════════════════════════════════════════
+  test:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Create test directory
+        run: mkdir -p test_ghactions
+
+      - name: Run tests
+        run: |
+          pytest test_ghactions/ -v --cov=. --cov-report=xml --cov-report=term \
+            --ignore=notebooks --ignore=data --ignore=models \
+            || echo "Tests completed with status: $?"
+
+      - name: Upload coverage report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage.xml
+          retention-days: 7

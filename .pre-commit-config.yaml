@@ -1,0 +1,120 @@
+# Configuration Pre-commit pour EyesDcar
+# Version: 2.1
+# Date: 22/04/2026
+# Description: Tous les hooks (difficulté ≤ 4/10)
+# Python: 3.10
+
+default_install_hook_types: [pre-commit]
+default_language_version:
+  python: python3.10
+
+repos:
+  # ═══════════════════════════════════════════════════════════
+  # PHASE 1 : FORMATTING (Formatage automatique)
+  # ═══════════════════════════════════════════════════════════
+
+  - repo: https://github.com/psf/black
+    rev: 26.3.1
+    hooks:
+      - id: black
+        name: "Black - Formatage Python"
+        language_version: python3.10
+        args: ['--line-length=88']
+
+  - repo: https://github.com/pycqa/isort
+    rev: 8.0.1
+    hooks:
+      - id: isort
+        name: "isort - Tri des imports"
+        args: ['--profile', 'black', '--line-length', '88']
+
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v3.21.2
+    hooks:
+      - id: pyupgrade
+        name: "pyupgrade - Modernisation syntaxe"
+        args: ['--py310-plus']
+
+  # ═══════════════════════════════════════════════════════════
+  # PHASE 2 : LINTING (Analyse statique rapide)
+  # ═══════════════════════════════════════════════════════════
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.15.11
+    hooks:
+      - id: ruff
+        name: "Ruff - Linting rapide"
+        args:
+          - --fix
+          - --exit-non-zero-on-fix
+        types_or: [python, pyi]
+
+  # ═══════════════════════════════════════════════════════════
+  # PHASE 3 : SECURITY (Détection menaces)
+  # ═══════════════════════════════════════════════════════════
+
+  - repo: https://github.com/PyCQA/bandit
+    rev: 1.9.4
+    hooks:
+      - id: bandit
+        name: "Bandit - Scan sécurité code"
+        args:
+          - '-c'
+          - '.bandit'
+          - '-r'
+        exclude: '^tests/|^\.github/scripts/'
+
+  - repo: https://github.com/Yelp/detect-secrets
+    rev: v1.5.0
+    hooks:
+      - id: detect-secrets
+        name: "detect-secrets - Scan credentials"
+        args:
+          - '--baseline'
+          - '.secrets.baseline'
+        exclude: 'package-lock.json|poetry.lock|.*\.ipynb$'
+
+  # ═══════════════════════════════════════════════════════════
+  # PHASE 4 : NOTEBOOKS (Nettoyage Jupyter)
+  # ═══════════════════════════════════════════════════════════
+
+  - repo: https://github.com/kynan/nbstripout
+    rev: 0.9.1
+    hooks:
+      - id: nbstripout
+        name: "nbstripout - Nettoyage notebooks"
+        args:
+          - '--extra-keys'
+          - 'metadata.kernelspec metadata.language_info'
+
+  # ═══════════════════════════════════════════════════════════
+  # PHASE 5 : GUARDIANS (Vérifications basiques)
+  # ═══════════════════════════════════════════════════════════
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: trailing-whitespace
+        name: "Suppression espaces inutiles"
+        args: ['--markdown-linebreak-ext=md']
+
+      - id: end-of-file-fixer
+        name: "Fixe fin de fichier"
+
+      - id: check-yaml
+        name: "Validation YAML"
+        args: ['--unsafe']
+
+      - id: check-json
+        name: "Validation JSON"
+
+      - id: check-merge-conflict
+        name: "Détection conflits merge"
+
+      - id: check-added-large-files
+        name: "Vérification taille fichiers"
+        args: ['--maxkb=500']
+        exclude: '\.pt$|\.pth$|\.onnx$'
+
+      - id: detect-private-key
+        name: "Détection clés privées"

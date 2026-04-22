@@ -1,0 +1,33 @@
+# Requirements pour les pre-commit hooks et GitHub Actions
+# Projet: EyesDcar TEST
+# Python: 3.10
+# Date: 22/04/2026
+
+# Pre-commit hooks
+pre-commit==4.6.0
+
+# Formatting
+black==24.4.2
+isort==5.13.2
+pyupgrade==3.21.2
+
+# Linting
+ruff==0.15.11
+
+# Security
+bandit==1.7.8
+detect-secrets==1.5.0
+safety==3.2.2
+
+# Notebooks
+nbstripout==0.9.1
+
+# Testing
+pytest==8.3.4
+pytest-cov==6.0.0
+
+# Code quality
+pylint==3.2.3
+
+# Utilities
+pyyaml==6.0.1
