@@ -1,0 +1,15 @@
+# Fichier YAML valide pour les tests
+project:
+  name: eyesdcar
+  version: 1.0.0
+  description: Vehicle damage detection
+
+models:
+  car_parts:
+    path: src/models/car_parts/model/best.pt
+    type: segmentation
+
+settings:
+  confidence_threshold: 0.5
+  iou_threshold: 0.45
+  max_detections: 100
