@@ -41,7 +41,7 @@ jobs:
 
       - name: Run Bandit
         run: |
-          bandit -r src/ -c .bandit -f json -o bandit-report.json || true
+          bandit -r src/ -c .pre-commit/.bandit -f json -o bandit-report.json || true
 
       - name: Run Bandit (screen output)
         run: bandit -r src/ -c .bandit -f screen || true

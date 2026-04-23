@@ -1,0 +1,14 @@
+# Proprietaires par defaut (a completer par superieur)
+* @TODO_SUPERIEUR
+
+# Modeles ML
+/src/models/ @TODO_SUPERIEUR
+
+# Inference
+/src/edc_inference/ @TODO_SUPERIEUR
+
+# Documentation
+/docs/ @TODO_SUPERIEUR
+
+# CI/CD
+/.github/workflows/ @TODO_SUPERIEUR
