@@ -1,10 +1,9 @@
 # Configuration Pre-commit pour EyesDcar
-# Version: 2.1
-# Date: 22/04/2026
-# Description: Tous les hooks (difficulté ≤ 4/10)
+# Version: 2.2
+# Date: 23/04/2026
 # Python: 3.10
 
-default_install_hook_types: [pre-commit]
+default_install_hook_types: [pre-commit, commit-msg]
 default_language_version:
   python: python3.10
 
@@ -12,6 +11,23 @@ repos:
   # ═══════════════════════════════════════════════════════════
   # PHASE 1 : FORMATTING (Formatage automatique)
   # ═══════════════════════════════════════════════════════════
+  - repo: local
+    hooks:
+      - id: check-commit-message
+        name: Check Commit Message Convention
+        entry: |
+          python3 -c '
+          import sys, re;
+          pattern = r"^\[(FEATURE|FIX|MODEL|REFAC|DOCS|PERF|TEST|SEC|DEVOPS|CHORE)\]\s:\s.*";
+          msg = open(sys.argv[1]).read().strip();
+          if not re.match(pattern, msg):
+            print("❌ Invalid commit message format!");
+            print("Expected: [TYPE] : Description (e.g., [FEATURE] : added OBD reader)");
+            sys.exit(1);
+          '
+        language: system
+        stages: [commit-msg]
+
 
   - repo: https://github.com/psf/black
     rev: 26.3.1
