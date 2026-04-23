@@ -60,7 +60,7 @@ repos:
         name: "Bandit - Scan sécurité code"
         args:
           - '-c'
-          - '.bandit'
+          - '.pre-commit/.bandit'
           - '-r'
         exclude: '^tests/|^\.github/scripts/'
 
@@ -71,7 +71,7 @@ repos:
         name: "detect-secrets - Scan credentials"
         args:
           - '--baseline'
-          - '.secrets.baseline'
+          - '.pre-commit/.secrets.baseline'
         exclude: 'package-lock.json|poetry.lock|.*\.ipynb$'
 
   # ═══════════════════════════════════════════════════════════
