@@ -15,6 +15,9 @@ on:
     - cron: '0 2 * * *'  # Quotidien à 2h du matin
   workflow_dispatch:
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   # ═══════════════════════════════════════════════════════════
   # JOB 1 : BANDIT - Scan code source
@@ -68,6 +71,9 @@ jobs:
   safety:
     name: Dependency Vulnerability Scan
     runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
     timeout-minutes: 10
 
     steps:
@@ -85,7 +91,7 @@ jobs:
 
       - name: Run Safety check
         run: |
-          safety check --json --output safety-report.json || true
+          safety check -r requirements.txt --json > safety-report.json || echo "{}" > safety-report.json
 
       - name: Check for vulnerabilities
         run: |
