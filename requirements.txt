@@ -1,33 +1,32 @@
-# Requirements pour les pre-commit hooks et GitHub Actions
-# Projet: EyesDcar TEST
-# Python: 3.10
-# Date: 22/04/2026
+# ══════════════════════════════════════════════════════════════════════════════
+# REQUIREMENTS - EyesDcar TEST
+# Description: Outils de Qualité, Sécurité et Tests (CI/CD & Pre-commit)
+# Python: 3.10 | Date: 23/04/2026
+# ══════════════════════════════════════════════════════════════════════════════
 
-# Pre-commit hooks
+# --- Core Hook Manager ---
 pre-commit==4.6.0
 
-# Formatting
-black==24.4.2
-isort==5.13.2
+# --- Phase 1: Formatting ---
+black==26.3.1
+isort==8.0.1
 pyupgrade==3.21.2
 
-# Linting
+# --- Phase 2: Linting ---
 ruff==0.15.11
+pylint==3.2.3
 
-# Security
-bandit==1.7.8
+# --- Phase 3: Security ---
+bandit==1.9.4
 detect-secrets==1.5.0
-safety==3.2.2
+safety==3.2.11
 
-# Notebooks
+# --- Phase 4: Jupyter Notebooks ---
 nbstripout==0.9.1
 
-# Testing
+# --- Phase 5: Testing & Coverage ---
 pytest==8.3.4
 pytest-cov==6.0.0
 
-# Code quality
-pylint==3.2.3
-
-# Utilities
-pyyaml==6.0.1
+# --- Phase 6: Utilities ---
+pyyaml==6.0.2
