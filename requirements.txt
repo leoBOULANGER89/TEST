@@ -5,28 +5,28 @@
 # ══════════════════════════════════════════════════════════════════════════════
 
 # --- Core Hook Manager ---
-pre-commit==4.6.0
+pre-commit>=4.6.0
 
 # --- Phase 1: Formatting ---
-black==26.3.1
-isort==8.0.1
-pyupgrade==3.21.2
+black>=26.3.1
+isort>=8.0.1
+pyupgrade>=3.21.2
 
 # --- Phase 2: Linting ---
-ruff==0.15.11
-pylint==3.2.3
+ruff>=0.15.11
+pylint>=3.2.3
 
 # --- Phase 3: Security ---
-bandit==1.9.4
-detect-secrets==1.5.0
-safety==3.2.11
+bandit>=1.9.4
+detect-secrets>=1.5.0
+safety>=3.2.11
 
 # --- Phase 4: Jupyter Notebooks ---
-nbstripout==0.9.1
+nbstripout>=0.9.1
 
 # --- Phase 5: Testing & Coverage ---
-pytest==8.3.4
-pytest-cov==6.0.0
+pytest>=8.3.4
+pytest-cov>=6.0.0
 
 # --- Phase 6: Utilities ---
-pyyaml==6.0.2
+pyyaml>=6.0.2
