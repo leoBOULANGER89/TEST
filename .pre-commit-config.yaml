@@ -4,6 +4,7 @@
 # Python: 3.10
 
 default_install_hook_types: [pre-commit, commit-msg]
+default_stages: [pre-commit]
 default_language_version:
   python: python3.10
 
@@ -17,13 +18,13 @@ repos:
         name: Check Commit Message Convention
         entry: |
           python3 -c '
-          import sys, re;
-          pattern = r"^\[(FEATURE|FIX|MODEL|REFAC|DOCS|PERF|TEST|SEC|DEVOPS|CHORE)\]\s:\s.*";
-          msg = open(sys.argv[1]).read().strip();
+          import sys, re
+          pattern = r"^\[(FEATURE|FIX|MODEL|REFAC|DOCS|PERF|TEST|SEC|DEVOPS|CHORE)\]\s.*"
+          msg = open(sys.argv[1]).read().strip()
           if not re.match(pattern, msg):
-            print("❌ Invalid commit message format!");
-            print("Expected: [TYPE] : Description (e.g., [FEATURE] : added OBD reader)");
-            sys.exit(1);
+              print("\n❌ Formato de confirmación no válido !")
+              print("Attendu : [TYPE] Descripción (ex: [FEATURE] Se ha añadido un lector OBD.)\nPrefijo posible: [FEATURE], [FIX], [MODEL], [REFAC], [DOCS], [PERF], [TEST], [SEC], [DEVOPS], [CHORE]")
+              sys.exit(1)
           '
         language: system
         stages: [commit-msg]
