@@ -10,6 +10,16 @@ default_language_version:
 
 repos:
   # ═══════════════════════════════════════════════════════════
+  # PHASE 0 : GUARDIANS (MUST RUN FIRST - basic checks)
+  # ═══════════════════════════════════════════════════════════
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-merge-conflict
+        name: "Merge conflict detection"
+        stages: [pre-commit]
+
+  # ═══════════════════════════════════════════════════════════
   # PHASE 1 : FORMATTING (Automatic formatting)
   # ═══════════════════════════════════════════════════════════
   - repo: local
@@ -107,7 +117,6 @@ repos:
   # ═══════════════════════════════════════════════════════════
   # PHASE 5 : GUARDIANS (Basic checks)
   # ═══════════════════════════════════════════════════════════
-
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
     hooks:
@@ -124,9 +133,6 @@ repos:
 
       - id: check-json
         name: "JSON validation"
-
-      - id: check-merge-conflict
-        name: "Merge conflict detection"
 
       - id: check-added-large-files
         name: "File size verification"
