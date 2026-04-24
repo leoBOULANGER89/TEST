@@ -27,7 +27,7 @@ jobs:
           fi
 
           # Your Regex
-          REGEX="^(feature|bugfix|hotfix|release|DEV-[A-Z]{2,4})\/.*"
+          REGEX="^(feature|bugfix|hotfix|release|dependabot|DEV-[A-Z]{2,4})\/.*"
 
           echo "Checking branch: $BRANCH_NAME"
 
@@ -36,6 +36,7 @@ jobs:
             echo "❌ INVALID BRANCH NAME!"
             echo "The branch '$BRANCH_NAME' does not follow the EyesDcar conventions."
             echo "Allowed formats:"
+            echo " - dependabot/update proposed by dependabot"
             echo " - feature/name"
             echo " - bugfix/name"
             echo " - hotfix/name"
