@@ -1,0 +1,8 @@
+# Test check-yaml - Fichier YAML valide
+
+config:
+  name: eyesdcar
+  version: 1.0
+  database:
+    host: localhost
+    port: 5432

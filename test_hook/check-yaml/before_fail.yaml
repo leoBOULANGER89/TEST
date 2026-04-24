@@ -1,0 +1,9 @@
+# Test check-yaml - Fichier YAML invalide
+# Erreurs intentionnelles : indentation incorrecte
+
+config:
+  name: eyesdcar
+    version: 1.0
+  database:
+  host: localhost
+    port: 5432

@@ -1,0 +1,9 @@
+{
+    "name": "eyesdcar",
+    "version": "1.0",
+    "database": {
+        "host": "localhost",
+        "port": 5432
+    }
+    "features": ["detect", "classify", "segment"]
+}
