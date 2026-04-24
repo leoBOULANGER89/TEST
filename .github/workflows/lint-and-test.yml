@@ -1,7 +1,7 @@
 # GitHub Actions - Lint and Test
-# Projet: EyesDcar TEST
+# Project: EyesDcar TEST
 # Date: 24/04/2026
-# Description: Vérification qualité code + tests unitaires
+# Description: Code quality verification + unit tests
 
 name: Lint and Test
 
@@ -23,7 +23,7 @@ env:
 
 jobs:
   # ═══════════════════════════════════════════════════════════
-  # JOB 1 : LINT - Analyse qualité code
+  # JOB 1 : LINT - Code quality analysis
   # ═══════════════════════════════════════════════════════════
   lint:
     name: Code Linting
@@ -60,7 +60,7 @@ jobs:
       - name: Run Pylint and Save Report
         run: |
           pip install pylint
-          # On redirige la sortie vers pylint-report.txt
+          # Redirect output to pylint-report.txt
           pylint $(find . -name "*.py" -type f ! -path "./test_hook/*" ! -path "./.git/*") \
             --disable=C0114,C0115,C0116 > pylint-report.txt || true
 
@@ -72,7 +72,7 @@ jobs:
           path: pylint-report.txt
 
   # ═══════════════════════════════════════════════════════════
-  # JOB 2 : TEST - Tests unitaires et d'integration
+  # JOB 2 : TEST - Unit and integration tests
   # ═══════════════════════════════════════════════════════════
   test:
     name: Unit + Integration Tests

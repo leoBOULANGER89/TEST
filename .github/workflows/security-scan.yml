@@ -1,7 +1,7 @@
 # GitHub Actions - Security Scan
-# Projet: EyesDcar TEST
+# Project: EyesDcar TEST
 # Date: 22/04/2026
-# Description: Scan sécurité code (Bandit) et dépendances (Safety)
+# Description: Code security scan (Bandit) and dependencies (Safety)
 
 name: Security Scan
 
@@ -21,7 +21,7 @@ env:
 
 jobs:
   # ═══════════════════════════════════════════════════════════
-  # JOB 1 : BANDIT - Scan code source
+  # JOB 1 : BANDIT - Source code scan
   # ═══════════════════════════════════════════════════════════
   bandit:
     name: Bandit Security Scan
@@ -67,7 +67,7 @@ jobs:
           retention-days: 30
 
   # ═══════════════════════════════════════════════════════════
-  # JOB 2 : SAFETY - Scan dépendances Python
+  # JOB 2 : SAFETY - Python dependencies scan
   # ═══════════════════════════════════════════════════════════
   safety:
     name: Dependency Vulnerability Scan
@@ -112,7 +112,7 @@ jobs:
           retention-days: 30
 
   # ═══════════════════════════════════════════════════════════
-  # JOB 3 : SNYK - Analyse approfondie des dépendances
+  # JOB 3 : SNYK - In-depth dependencies analysis
   # ═══════════════════════════════════════════════════════════
   snyk:
     name: Snyk Security Scan
@@ -127,7 +127,7 @@ jobs:
           args: --severity-threshold=high
 
   # ═══════════════════════════════════════════════════════════
-  # JOB 4 : TRIVY FS - Scan du repo (Config, Secrets, Vulns)
+  # JOB 4 : TRIVY FS - Scan repo (Config, Secrets, Vulns)
   # ═══════════════════════════════════════════════════════════
   trivy-fs:
     name: Trivy Filesystem Scan

@@ -1,7 +1,7 @@
 # GitHub Actions - End-to-End Tests
-# Projet: EyesDcar TEST
+# Project: EyesDcar TEST
 # Date: 23/04/2026
-# Description: Tests E2E - Executes uniquement sur PR
+# Description: E2E Tests - Runs only on PR
 
 name: E2E Tests
 
@@ -15,7 +15,7 @@ on:
 
 jobs:
   # ═══════════════════════════════════════════════════════════
-  # JOB : E2E - Tests end-to-end complets
+  # JOB : E2E - Full end-to-end tests
   # ═══════════════════════════════════════════════════════════
   e2e:
     name: End-to-End Tests

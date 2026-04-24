@@ -1,6 +1,6 @@
 # ══════════════════════════════════════════════════════════════════════════════
 # REQUIREMENTS - EyesDcar TEST
-# Description: Outils de Qualité, Sécurité et Tests (CI/CD & Pre-commit)
+# Description: Quality, Security and Testing tools (CI/CD & Pre-commit)
 # Python: 3.10 | Date: 23/04/2026
 # ══════════════════════════════════════════════════════════════════════════════
 

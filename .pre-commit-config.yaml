@@ -1,4 +1,4 @@
-# Configuration Pre-commit pour EyesDcar
+# Pre-commit Configuration for EyesDcar
 # Version: 2.2
 # Date: 23/04/2026
 # Python: 3.10
@@ -10,7 +10,7 @@ default_language_version:
 
 repos:
   # ═══════════════════════════════════════════════════════════
-  # PHASE 1 : FORMATTING (Formatage automatique)
+  # PHASE 1 : FORMATTING (Automatic formatting)
   # ═══════════════════════════════════════════════════════════
   - repo: local
     hooks:
@@ -22,8 +22,8 @@ repos:
           pattern = r"^\[(FEATURE|FIX|MODEL|REFAC|DOCS|PERF|TEST|SEC|DEVOPS|CHORE)\]\s.*"
           msg = open(sys.argv[1]).read().strip()
           if not re.match(pattern, msg):
-              print("\n❌ Formato de confirmación no válido !")
-              print("Attendu : [TYPE] Descripción (ex: [FEATURE] Se ha añadido un lector OBD.)\nPrefijo posible: [FEATURE], [FIX], [MODEL], [REFAC], [DOCS], [PERF], [TEST], [SEC], [DEVOPS], [CHORE]")
+              print("\n❌ Invalid commit message format!")
+              print("Expected: [TYPE] Description (ex: [FEATURE] Added OBD reader.)\nPossible prefixes: [FEATURE], [FIX], [MODEL], [REFAC], [DOCS], [PERF], [TEST], [SEC], [DEVOPS], [CHORE]")
               sys.exit(1)
           '
         language: system
@@ -34,7 +34,7 @@ repos:
     rev: 26.3.1
     hooks:
       - id: black
-        name: "Black - Formatage Python"
+        name: "Black - Python formatting"
         language_version: python3.10
         args: ['--line-length=88']
 
@@ -42,39 +42,39 @@ repos:
     rev: 8.0.1
     hooks:
       - id: isort
-        name: "isort - Tri des imports"
+        name: "isort - Import sorting"
         args: ['--profile', 'black', '--line-length', '88']
 
   - repo: https://github.com/asottile/pyupgrade
     rev: v3.21.2
     hooks:
       - id: pyupgrade
-        name: "pyupgrade - Modernisation syntaxe"
+        name: "pyupgrade - Syntax modernization"
         args: ['--py310-plus']
 
   # ═══════════════════════════════════════════════════════════
-  # PHASE 2 : LINTING (Analyse statique rapide)
+  # PHASE 2 : LINTING (Fast static analysis)
   # ═══════════════════════════════════════════════════════════
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.15.11
     hooks:
       - id: ruff
-        name: "Ruff - Linting rapide"
+        name: "Ruff - Fast linting"
         args:
           - --fix
           - --exit-non-zero-on-fix
         types_or: [python, pyi]
 
   # ═══════════════════════════════════════════════════════════
-  # PHASE 3 : SECURITY (Détection menaces)
+  # PHASE 3 : SECURITY (Threat detection)
   # ═══════════════════════════════════════════════════════════
 
   - repo: https://github.com/PyCQA/bandit
     rev: 1.9.4
     hooks:
       - id: bandit
-        name: "Bandit - Scan sécurité code"
+        name: "Bandit - Security scan"
         args:
           - '-c'
           - '.pre-commit/.bandit'
@@ -85,53 +85,53 @@ repos:
     rev: v1.5.0
     hooks:
       - id: detect-secrets
-        name: "detect-secrets - Scan credentials"
+        name: "detect-secrets - Credentials scan"
         args:
           - '--baseline'
           - '.pre-commit/.secrets.baseline'
         exclude: 'package-lock.json|poetry.lock|.*\.ipynb$'
 
   # ═══════════════════════════════════════════════════════════
-  # PHASE 4 : NOTEBOOKS (Nettoyage Jupyter)
+  # PHASE 4 : NOTEBOOKS (Jupyter cleanup)
   # ═══════════════════════════════════════════════════════════
 
   - repo: https://github.com/kynan/nbstripout
     rev: 0.9.1
     hooks:
       - id: nbstripout
-        name: "nbstripout - Nettoyage notebooks"
+        name: "nbstripout - Notebook cleanup"
         args:
           - '--extra-keys'
           - 'metadata.kernelspec metadata.language_info'
 
   # ═══════════════════════════════════════════════════════════
-  # PHASE 5 : GUARDIANS (Vérifications basiques)
+  # PHASE 5 : GUARDIANS (Basic checks)
   # ═══════════════════════════════════════════════════════════
 
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
     hooks:
       - id: trailing-whitespace
-        name: "Suppression espaces inutiles"
+        name: "Remove unnecessary spaces"
         args: ['--markdown-linebreak-ext=md']
 
       - id: end-of-file-fixer
-        name: "Fixe fin de fichier"
+        name: "Fix end of file"
 
       - id: check-yaml
-        name: "Validation YAML"
+        name: "YAML validation"
         args: ['--unsafe']
 
       - id: check-json
-        name: "Validation JSON"
+        name: "JSON validation"
 
       - id: check-merge-conflict
-        name: "Détection conflits merge"
+        name: "Merge conflict detection"
 
       - id: check-added-large-files
-        name: "Vérification taille fichiers"
+        name: "File size verification"
         args: ['--maxkb=500']
         exclude: '\.pt$|\.pth$|\.onnx$'
 
       - id: detect-private-key
-        name: "Détection clés privées"
+        name: "Private key detection"

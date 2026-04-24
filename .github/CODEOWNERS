@@ -1,13 +1,13 @@
-# Propietarios predeterminados
+# Default owners
 * @TODO_SUPERIEUR
 
-# Modelos ML
+# ML Models
 /src/models/ @TODO_SUPERIEUR
 
 # Inference
 /src/edc_inference/ @TODO_SUPERIEUR
 
-# Documentación
+# Documentation
 /docs/ @TODO_SUPERIEUR
 
 # CI/CD

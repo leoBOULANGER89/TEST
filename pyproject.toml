@@ -1,5 +1,5 @@
-# Configuration centralisée des outils Python
-# Projet: EyesDcar
+# Centralized Python tools configuration
+# Project: EyesDcar
 # Date: 22/04/2026
 
 [tool.black]

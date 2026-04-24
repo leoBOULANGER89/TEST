@@ -1,123 +1,123 @@
 # Pull Request
 
 <!--
-⚠️ INSTRUCCIONES:
-- Complete TODAS las secciones relevantes para su PR
-- Elimine las secciones que NO se aplican a su cambio
-- Reemplace los placeholders entre <...> con su informacion
-- Marque [x] los items de la checklist a medida que avanza
+⚠️ INSTRUCTIONS:
+- Complete ALL relevant sections for your PR
+- Remove sections that do NOT apply to your change
+- Replace placeholders between <...> with your information
+- Mark [x] checklist items as you progress
 -->
 
-## Tipo de cambio
+## Change type
 
-<!-- Marque todas las casillas que aplican -->
+<!-- Check all applicable boxes -->
 
-- [ ] 🐛 **Bug fix** (correccion de un problema existente)
-- [ ] ✨ **Feature** (nueva funcionalidad)
-- [ ] 🧠 **Model** (nuevo modelo ML o mejora de un modelo existente)
-- [ ] 🔧 **Refactoring** (restructuracion del codigo sin cambio de funcionalidad)
-- [ ] 📚 **Documentation** (actualizacion de la documentacion unicamente)
-- [ ] 🚀 **Performance** (mejora del rendimiento)
-- [ ] 🧪 **Tests** (agregado o correccion de tests)
-- [ ] 🔐 **Security** (parche de seguridad)
-- [ ] 🐳 **DevOps/Infrastructure** (CI/CD, Docker, configuracion)
-- [ ] 📦 **Dependencies** (actualizacion de dependencias)
+- [ ] 🐛 **Bug fix** (fix for an existing issue)
+- [ ] ✨ **Feature** (new functionality)
+- [ ] 🧠 **Model** (new ML model or improvement to existing model)
+- [ ] 🔧 **Refactoring** (code restructuring without functionality change)
+- [ ] 📚 **Documentation** (documentation update only)
+- [ ] 🚀 **Performance** (performance improvement)
+- [ ] 🧪 **Tests** (added or fixed tests)
+- [ ] 🔐 **Security** (security patch)
+- [ ] 🐳 **DevOps/Infrastructure** (CI/CD, Docker, configuration)
+- [ ] 📦 **Dependencies** (dependencies update)
 
 ---
 
-## Descripcion
+## Description
 
 <!--
-Describa claramente y de manera concisa lo que hace este PR.
-Incluya el contexto necesario para entender los cambios.
+Clearly and concisely describe what this PR does.
+Include necessary context to understand the changes.
 -->
 
-**Resumen en una linea :**  
-<Describa en una frase el cambio principal>
+**One-line summary:**  
+<Describe the main change in one sentence>
 
-**Contexto detallado :**  
-<Explique por que este cambio es necesario, que problema resuelve, o que funcionalidad agrega>
+**Detailed context:**  
+<Explain why this change is needed, what problem it solves, or what functionality it adds>
 
-**Cambios principales :**
-- <Cambio 1>
-- <Cambio 2>
-- <Cambio 3>
-
----
-
-## Issues relacionadas
-
-<!-- Vincule los issues de GitHub o tickets Jira correspondientes -->
-
-Fixes #<numero_issue>  
-Related to #<numero_issue>
+**Main changes:**
+- <Change 1>
+- <Change 2>
+- <Change 3>
 
 ---
 
-## 🧠 Modelos ML
+## Related Issues
 
-<!-- ⚠️ SECCION OBLIGATORIA si modifica archivos .pt, .pth, .onnx -->
-<!-- Elimine esta seccion si no se modifica ningun modelo -->
+<!-- Link corresponding GitHub issues or Jira tickets -->
 
-### Modelo(s) modificado(s)
+Fixes #<issue_number>  
+Related to #<issue_number>
 
-- [ ] `car_parts` (segmentacion)
+---
+
+## 🧠 ML Models
+
+<!-- ⚠️ MANDATORY SECTION if modifying .pt, .pth, .onnx files -->
+<!-- Remove this section if no models are modified -->
+
+### Modified model(s)
+
+- [ ] `car_parts` (segmentation)
 - [ ] `car_damages/detector` (YOLOv10)
 - [ ] `car_damages/segmentation`
 - [ ] `car_damages/classificator`
-- [ ] `car_angle` (clasificacion)
-- [ ] Otro : <especifique>
+- [ ] `car_angle` (classification)
+- [ ] Other: <specify>
 
-### Metricas de rendimiento
+### Performance metrics
 
-<!-- El workflow Model Validation generara un informe automatico -->
-<!-- Agregue aqui un resumen manual si tiene resultados preliminares -->
+<!-- Model Validation workflow will generate an automatic report -->
+<!-- Add manual summary here if you have preliminary results -->
 
-| Metrica | Modelo anterior | Nuevo modelo | Delta | Mejoria ? |
-|--------|----------------|-------------|-------|-----------|
+| Metric | Previous model | New model | Delta | Improvement? |
+|--------|---------------|-----------|-------|---------------|
 | mAP@0.5 | <0.XX> | <0.XX> | <+X.X%> | ✅ / ⚠️ / ❌ |
 | Precision | <0.XX> | <0.XX> | <+X.X%> | ✅ / ⚠️ / ❌ |
 | Recall | <0.XX> | <0.XX> | <+X.X%> | ✅ / ⚠️ / ❌ |
 | F1-Score | <0.XX> | <0.XX> | <+X.X%> | ✅ / ⚠️ / ❌ |
 
-**Tamano del modelo :** <XX MB>  
-**Tiempo de inferencia (CPU) :** <XX ms>
+**Model size:** <XX MB>  
+**Inference time (CPU):** <XX ms>
 
-### Justificacion de los cambios
+### Changes justification
 
-<!-- Explique por que modifico el modelo -->
-<!-- Ejemplos: nuevo dataset, nueva arquitectura, hiperparametros optimizados, etc. -->
+<!-- Explain why you modified the model -->
+<!-- Examples: new dataset, new architecture, optimized hyperparameters, etc. -->
 
-<Describa las razones de la modificacion del modelo>
+<Describe reasons for model modification>
 
-### Documento explicando el aprendizaje
+### Learning document
 
-<Enlace al documento que explica cómo aprender el modelo.>
+<Link to document explaining how to train the model.>
 
 ---
 
-## 🔌 API / Backend
+## 🖥️ API / Backend
 
-<!-- Elimine esta seccion si no hay cambios API/Backend -->
+<!-- Remove this section if no API/Backend changes -->
 
-### Endpoints modificados/agregados
+### Modified/added endpoints
 
-| Metodo | Endpoint | Descripcion | Breaking change ? |
-|--------|----------|-------------|-------------------|
-| <GET/POST/PUT/DELETE> | `/api/v1/...` | <Descripcion> | ✅ Si / ❌ No |
+| Method | Endpoint | Description | Breaking change? |
+|--------|----------|-------------|------------------|
+| <GET/POST/PUT/DELETE> | `/api/v1/...` | <Description> | ✅ Yes / ❌ No |
 
-### Cambios del esquema de datos
+### Data schema changes
 
-<!-- Si modifica los modelos de datos o el esquema de base de datos -->
+<!-- If modifying data models or database schema -->
 
-**Antes :**
+**Before:**
 ```json
 {
   "field": "old_value"
 }
 ```
 
-**Despues :**
+**After:**
 ```json
 {
   "field": "new_value",
@@ -125,280 +125,279 @@ Related to #<numero_issue>
 }
 ```
 
-### Migracion requerida ?
+### Migration required?
 
-- [ ] ✅ Si, una migracion de base de datos es necesaria
-  - Script de migracion : `<ruta/verso/migration.sql>`
-  - Impacto : <Describa el impacto>
-- [ ] ❌ No, no se requiere migracion
+- [ ] ✅ Yes, database migration needed
+  - Migration script: `<path/to/migration.sql>`
+  - Impact: <Describe impact>
+- [ ] ❌ No, migration not required
 
 ---
 
 ## 🖼️ Frontend / UI
 
-<!-- Elimine esta seccion si no hay cambios de interfaz -->
+<!-- Remove this section if no UI changes -->
 
-### Capturas de pantalla
+### Screenshots
 
-<!-- Agregue capturas de pantalla para mostrar los cambios visuales -->
+<!-- Add screenshots to show visual changes -->
 
-**Antes :**  
-<Inserte captura de pantalla>
+**Before:**  
+<Screenshot here>
 
-**Despues :**  
-<Inserte captura de pantalla>
+**After:**  
+<Screenshot here>
 
-### Diseno responsive
+### Responsive design
 
-- [ ] Probado en desktop
-- [ ] Probado en tablet
-- [ ] Probado en movil
+- [ ] Tested on desktop
+- [ ] Tested on tablet
+- [ ] Tested on mobile
 
 ---
 
 ## 📊 OBD-II / Hardware
 
-<!-- Elimine esta seccion si no hay cambios relacionados con hardware -->
+<!-- Remove this section if no hardware-related changes -->
 
-### Hardware afectado
+### Affected hardware
 
 - [ ] OBDLink MX+
-- [ ] Simulador OBD-II
-- [ ] Otro : <especifique>
+- [ ] OBD-II Simulator
+- [ ] Other: <specify>
 
-### PIDs utilizados
+### PIDs used
 
-| PID | Descripcion | Formula | Unidad |
-|-----|-------------|---------|-------|
+| PID | Description | Formula | Unit |
+|-----|-------------|---------|------|
 | `0105` | Coolant Temperature | `A - 40` | °C |
 | `010D` | Vehicle Speed | `A` | km/h |
 | `0104` | Engine Load | `A * 100 / 255` | % |
 
-### Interfaz de comunicacion
+### Communication interface
 
-- **Puerto** : `/dev/rfcomm0`
-- **Protocolo** : RFCOMM Bluetooth
-- **Baud rate** : <si aplica>
+- **Port:** `/dev/rfcomm0`
+- **Protocol:** RFCOMM Bluetooth
+- **Baud rate:** <if applicable>
 
 ---
 
 ## 🧪 Tests
 
-### Tests unitarios
+### Unit tests
 
-- [ ] He agregado tests para cubrir mis cambios
-- [ ] Todos los tests unitarios existentes pasan
-- [ ] Cobertura de codigo : <XX%>
+- [ ] I added tests to cover my changes
+- [ ] All existing unit tests pass
+- [ ] Code coverage: <XX%>
 
-**Comando para ejecutar los tests :**
+**Command to run tests:**
 ```bash
 pytest tests/
 ```
 
-### Tests de integracion
+### Integration tests
 
-- [ ] He probado la integracion con los otros componentes
-- [ ] He probado los casos limite (edge cases)
+- [ ] I tested integration with other components
+- [ ] I tested edge cases
 
-### Tests manuales realizados
+### Manual tests performed
 
-<!-- Describa los tests manuales que ha realizado -->
+<!-- Describe manual tests you performed -->
 
-1. <Descripcion del test 1>
-2. <Descripcion del test 2>
-3. <Descripcion del test 3>
+1. <Description of test 1>
+2. <Description of test 2>
+3. <Description of test 3>
 
 ---
 
-## 📝 Como probar este PR ?
+## 📝 How to test this PR?
 
 <!--
-SECCION OBLIGATORIA
-Proporcione instrucciones CLARAS y DETALLADAS para probar sus cambios
+MANDATORY SECTION
+Provide CLEAR and DETAILED instructions to test your changes
 -->
 
-### Prerrequisitos
+### Prerequisites
 
-<!-- Liste todo lo que debe estar instalado/configurado antes de probar -->
+<!-- List everything that must be installed/configured before testing -->
 
-- [ ] <Dependencia 1>
-- [ ] <Dependencia 2>
-- [ ] <Configuracion especifica>
+- [ ] <Dependency 1>
+- [ ] <Dependency 2>
+- [ ] <Specific configuration>
 
-### Paso 1 : Setup del entorno
+### Step 1: Environment setup
 
 ```bash
-# Ejemplo de comandos
-git checkout <rama>
+# Example commands
+git checkout <branch>
 pip install -r requirements.txt
 ```
 
-### Paso 2 : <Nombre del paso>
+### Step 2: <Step name>
 
 ```bash
-# Comandos o acciones a realizar
+# Commands or actions to perform
 ```
 
-**Resultado esperado :**  
-<Describa lo que deberia pasar>
+**Expected result:**  
+<Describe what should happen>
 
-### Paso 3 : <Nombre del paso>
+### Step 3: <Step name>
 
 ```bash
-# Comandos o acciones a realizar
+# Commands or actions to perform
 ```
 
-**Resultado esperado :**  
-<Describa lo que deberia pasar>
+**Expected result:**  
+<Describe what should happen>
 
-<!-- Agregue tantos pasos como sea necesario -->
+<!-- Add as many steps as needed -->
 
 ---
 
 ## ✅ Checklist
 
-<!-- Marque todas las casillas aplicables. Si una casilla no puede ser marcada, explique por que en los comentarios -->
+<!-- Check all applicable boxes. If a box cannot be checked, explain why in comments -->
 
-<!-- Verifique los resultados de los GitAction antes de marcar -->
+<!-- Verify GitAction results before checking -->
 
-### Calidad del Codigo
+### Code Quality
 
-- [ ] Mi codigo sigue las convenciones de estilo del proyecto (PEP 8, Black, isort) <!-- Verificar Code Linting -->
-- [ ] He realizado una auto-revision de mi codigo
-- [ ] Mi codigo es legible y comprensible <!-- Verificar Code Linting -->
-- [ ] He comentado las partes complejas del codigo
-- [ ] He eliminado los logs de debug y los comentarios inutiles
+- [ ] My code follows project style conventions (PEP 8, Black, isort) <!-- Check Code Linting -->
+- [ ] I performed self-review of my code
+- [ ] My code is readable and understandable <!-- Check Code Linting -->
+- [ ] I commented complex parts of the code
+- [ ] I removed debug logs and unnecessary comments
 
-### Documentacion
+### Documentation
 
-- [ ] He actualizado la documentacion correspondiente
-- [ ] He agregado docstrings a las nuevas funciones/clases
-- [ ] He actualizado el README si es necesario
-- [ ] He documentado los cambios de API en el changelog
+- [ ] I updated relevant documentation
+- [ ] I added docstrings to new functions/classes
+- [ ] I updated README if needed
+- [ ] I documented API changes in changelog
 
 ### Tests
 
-- [ ] He agregado tests que prueben que mi correccion funciona o que mi funcionalidad funciona
-- [ ] Los nuevos tests y los tests existentes pasan en local <!-- Verificar Unit Tests -->
-- [ ] He verificado la cobertura de codigo
+- [ ] I added tests that verify my fix works or my functionality works
+- [ ] New and existing tests pass locally <!-- Check Unit Tests -->
+- [ ] I verified code coverage
 
-### Seguridad
+### Security
 
-- [ ] No he introducido vulnerabilidades conocidas <!-- Verificar Dependency Vulnerability Scan -->
-- [ ] No he expuesto secrets (API keys, passwords, tokens) <!-- Verificar Bandit Security Scan -->
-- [ ] He validado todas las entradas de usuario
-- [ ] He usado consultas parametrizadas para las queries SQL
+- [ ] I did not introduce known vulnerabilities <!-- Check Dependency Vulnerability Scan -->
+- [ ] I did not expose secrets (API keys, passwords, tokens) <!-- Check Bandit Security Scan -->
+- [ ] I validated all user inputs
+- [ ] I used parameterized queries for SQL queries
 
-### Rendimiento
+### Performance
 
-- [ ] He verificado que mis cambios no tienen impacto negativo en el rendimiento
-- [ ] He optimizado las consultas de base de datos si aplica
-- [ ] He evitado los bucles N+1
+- [ ] I verified my changes do not have negative performance impact
+- [ ] I optimized database queries if applicable
+- [ ] I avoided N+1 loops
 
 ### Git
 
-- [ ] Mis commits son descriptivos y siguen la convencion de commit <!-- Verificar en pre-commit -->
-- [ ] He hecho rebase de mi rama sobre la ultima version de `main`/`development`
-- [ ] He resuelto todos los conflictos de merge
+- [ ] My commits are descriptive and follow commit convention <!-- Check pre-commit -->
+- [ ] I rebased my branch on latest `main`/`development`
+- [ ] I resolved all merge conflicts
 
 ---
 
-## 🔍 Resultados de las verificaciones automaticas
+## 🔍 Automated verification results
 
 ### Pre-commit Hooks
 
-<!-- Los hooks se ejecutan automaticamente, documente aqui si tuvo que skip algunos -->
+<!-- Hooks run automatically, document here if you had to skip any -->
 
-- [x] Black (formateo)
+- [x] Black (formatting)
 - [x] isort (imports)
 - [x] Ruff (linting)
-- [x] Bandit (seguridad)
+- [x] Bandit (security)
 - [x] nbstripout (notebooks)
 
 ### GitHub Actions
 
-<!-- Estas verificaciones se ejecutan automaticamente al hacer push -->
+<!-- These verifications run automatically on push -->
 
 #### Lint
 
-<img width="698" alt="Pylint Results" src="<URL_de_su_captura>">
+<img width="698" alt="Pylint Results" src="<your_screenshot_url>">
 
-**Score Pylint :** <X.XX/10>
+**Pylint Score:** <X.XX/10>
 
 #### Tests
 
 ```
-<Retorno del terminal al verificar los tests>
+<Terminal output when testing>
 ```
 
-**Cobertura :** <XX%>
+**Coverage:** <XX%>
 
 #### Security Scan
 
-<!-- Verificar los logs de los git Actions -->
-- **Bandit :** ✅ Ninguna falla detectada
-- **Snyk :** ✅ Ninguna vulnerabilidad en las dependencias
-- **Trivy :** ✅ Imagen Docker segurizada (si aplica)
-
+<!-- Check Git Action logs -->
+- **Bandit:** ✅ No issues detected
+- **Snyk:** ✅ No vulnerabilities in dependencies
+- **Trivy:** ✅ Docker image secured (if applicable)
 
 ---
 
 ## 🚨 Breaking Changes
 
-<!-- ⚠️ SECCION CRITICA si su PR introduce breaking changes -->
-<!-- Elimine esta seccion si no hay breaking change -->
+<!-- ⚠️ CRITICAL SECTION if your PR introduces breaking changes -->
+<!-- Remove this section if no breaking changes -->
 
-### Cambios incompatibles
+### Incompatible changes
 
-<Liste todos los cambios que rompen la compatibilidad con las versiones anteriores>
+<List all changes that break backward compatibility>
 
-### Acciones requeridas para los usuarios
+### Actions required for users
 
-1. <Accion 1>
-2. <Accion 2>
+1. <Action 1>
+2. <Action 2>
 
-### Plan de migracion
+### Migration plan
 
-<Describa como migrar desde la version anterior>
-
----
-
-## 📌 Notas adicionales
-
-<!-- Cualquier informacion adicional que los reviewers deberian conocer -->
-
-<Informaciones adicionales>
+<Describe how to migrate from previous version>
 
 ---
 
-## 🔗 Recursos
+## 📌 Additional notes
 
-<!-- Enlaces a documentos, designs, discusiones, etc. -->
+<!-- Any additional information reviewers should know -->
 
-- Design : <URL>
-- Discussion : <URL>
-- Documentacion externa : <URL>
+<Additional information>
 
 ---
 
-## 📸 Demostracion
+## 🔗 Resources
 
-<!-- (opcional) Si aplica, agregue una demo en video o GIF -->
+<!-- Links to documents, designs, discussions, etc. -->
 
-<Inserte GIF o enlace de video>
-
----
-
-## ⏱️ Estimacion de tiempo
-
-**Tiempo estimado para la review :** <XX minutos>  
-**Complejidad :** 🟢 Baja / 🟡 Media / 🔴 Alta
+- Design: <URL>
+- Discussion: <URL>
+- External documentation: <URL>
 
 ---
 
-## 👥 Reviewers sugeridos
+## 📸 Demo
 
-<!-- Mencione las personas que deberian revisar este PR -->
+<!-- (optional) If applicable, add video or GIF demo -->
+
+<Insert GIF or video link>
+
+---
+
+## ⏱️ Time estimate
+
+**Estimated review time:** <XX minutes>  
+**Complexity:** 🟢 Low / 🟡 Medium / 🔴 High
+
+---
+
+## 👥 Suggested reviewers
+
+<!-- Mention who should review this PR -->
 
 @<username1> @<username2>
 
@@ -406,9 +405,9 @@ pip install -r requirements.txt
 
 <!--
 ══════════════════════════════════════════════════════════════════════
-FIN DEL TEMPLATE
+TEMPLATE END
 ══════════════════════════════════════════════════════════════════════
 
-Gracias por tomarse el tiempo de completar este template completamente.
-Un PR bien documentado facilita la review y acelera el merge!
+Thank you for taking the time to complete this template.
+A well-documented PR facilitates review and accelerates merge!
 -->
