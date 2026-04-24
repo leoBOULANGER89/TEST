@@ -1,6 +1,6 @@
 # GitHub Actions - Lint and Test
 # Projet: EyesDcar TEST
-# Date: 22/04/2026
+# Date: 24/04/2026
 # Description: Vérification qualité code + tests unitaires
 
 name: Lint and Test
@@ -11,11 +11,11 @@ on:
       - 001-DEVELOPMENT
       - 002-TEST
       - 003-PRODUCTION
+      - 'feature/**'
+      - 'bugfix/**'
+      - 'hotfix/**'
+      - 'release/**'
   pull_request:
-    branches:
-      - 001-DEVELOPMENT
-      - 002-TEST
-      - 003-PRODUCTION
   workflow_dispatch:
 
 env:
@@ -57,18 +57,25 @@ jobs:
         run: pre-commit run --all-files --show-diff-on-failure
         continue-on-error: true
 
-      - name: Run Pylint
+      - name: Run Pylint and Save Report
         run: |
+          pip install pylint
+          # On redirige la sortie vers pylint-report.txt
           pylint $(find . -name "*.py" -type f ! -path "./test_hook/*" ! -path "./.git/*") \
-            --output-format=colorized \
-            --disable=C0114,C0115,C0116 \
-            || true
+            --disable=C0114,C0115,C0116 > pylint-report.txt || true
+
+      - name: Upload Lint Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lint-report
+          path: pylint-report.txt
 
   # ═══════════════════════════════════════════════════════════
-  # JOB 2 : TEST - Tests unitaires
+  # JOB 2 : TEST - Tests unitaires et d'integration
   # ═══════════════════════════════════════════════════════════
   test:
-    name: Unit Tests
+    name: Unit + Integration Tests
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
@@ -85,19 +92,16 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Create test directory
-        run: mkdir -p test_ghactions
+      - name: Run unity tests
+        run: pytest test/unity/ -v --cov=src --cov-report=xml
 
-      - name: Run tests
-        run: |
-          pytest test_ghactions/ -v --cov=. --cov-report=xml --cov-report=term \
-            --ignore=notebooks --ignore=data --ignore=models \
-            || echo "Tests completed with status: $?"
+      - name: Run integration tests
+        run: pytest test/integration/ -v --cov=src --cov-append --cov-report=xml --cov-report=term
 
       - name: Upload coverage report
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: coverage-report
+          name: full-coverage-report
           path: coverage.xml
           retention-days: 7
