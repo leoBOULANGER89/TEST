@@ -5,36 +5,40 @@ Integration tests for inference pipeline.
 
 def test_inference_imports():
     """Test que les imports nécessaires fonctionnent."""
-    import src.sample_module
+    import sample_module
 
-    assert src.sample_module is not None
+    assert sample_module is not None
 
 
 def test_inference_module_structure():
     """Test la structure du module d'inference."""
-    from src.sample_module import SampleClass
+    from sample_module import DataProcessor, calculate_metrics
 
-    instance = SampleClass()
-    assert hasattr(instance, "get_info")
-    assert hasattr(instance, "process")
+    processor = DataProcessor([1, 2, 3])
+    assert hasattr(processor, "process")
+    assert hasattr(calculate_metrics, "__call__")
 
 
 def test_inference_workflow():
     """Test le workflow d'inference complet."""
-    from src.sample_module import SampleClass
+    from sample_module import DataProcessor, calculate_metrics
 
-    instance = SampleClass()
-    info = instance.get_info()
-    assert info is not None
-    result = instance.process()
+    predictions = [1, 0, 1, 1, 0]
+    ground_truth = [1, 0, 0, 1, 0]
+
+    metrics = calculate_metrics(predictions, ground_truth)
+    assert metrics is not None
+
+    processor = DataProcessor([1, 2, 3])
+    result = processor.process()
     assert result is not None
 
 
 def test_inference_multiple_classes():
     """Test avec plusieurs instances."""
-    from src.sample_module import SampleClass
+    from sample_module import DataProcessor
 
-    instances = [SampleClass() for _ in range(3)]
-    assert len(instances) == 3
-    for instance in instances:
-        assert instance.get_info() is not None
+    processors = [DataProcessor([i]) for i in range(3)]
+    assert len(processors) == 3
+    for processor in processors:
+        assert processor.process() is not None

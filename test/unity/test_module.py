@@ -1,43 +1,42 @@
 """
-Unit tests for src module.
+Unit tests for sample_module.
 """
 
 
 def test_import_module():
     """Test que le module peut être importé."""
-    import src.sample_module
+    import sample_module
 
-    assert hasattr(src.sample_module, "SampleClass")
-
-
-def test_sample_class_exists():
-    """Test que SampleClass existe."""
-    from src.sample_module import SampleClass
-
-    assert SampleClass is not None
+    assert sample_module is not None
 
 
-def test_sample_class_instantiation():
-    """Test instantiation de SampleClass."""
-    from src.sample_module import SampleClass
+def test_calculate_metrics_exists():
+    """Test que calculate_metrics existe."""
+    from sample_module import calculate_metrics
 
-    instance = SampleClass()
-    assert instance is not None
-
-
-def test_sample_class_attributes():
-    """Test attributs de SampleClass."""
-    from src.sample_module import SampleClass
-
-    instance = SampleClass()
-    assert hasattr(instance, "name")
-    assert hasattr(instance, "version")
+    assert calculate_metrics is not None
 
 
-def test_sample_class_methods():
-    """Test methodes de SampleClass."""
-    from src.sample_module import SampleClass
+def test_data_processor_exists():
+    """Test que DataProcessor existe."""
+    from sample_module import DataProcessor
 
-    instance = SampleClass()
-    assert hasattr(instance, "get_info")
-    assert hasattr(instance, "process")
+    assert DataProcessor is not None
+
+
+def test_data_processor_instantiation():
+    """Test instantiation de DataProcessor."""
+    from sample_module import DataProcessor
+
+    processor = DataProcessor([1, 2, 3])
+    assert processor is not None
+    assert processor.data == [1, 2, 3]
+    assert processor.processed is False
+
+
+def test_legacy_function():
+    """Test legacy_function."""
+    from sample_module import legacy_function
+
+    result = legacy_function()
+    assert result == "42"

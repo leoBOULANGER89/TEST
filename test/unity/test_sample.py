@@ -1,5 +1,5 @@
 """
-Unit tests for sample module.
+Unit tests for sample_module.
 """
 
 
@@ -60,3 +60,29 @@ def test_sample_exception():
         raise ValueError("test error")
     except ValueError as e:
         assert str(e) == "test error"
+
+
+def test_calculate_metrics():
+    """Test pour calculate_metrics."""
+    from sample_module import calculate_metrics
+
+    predictions = [1, 0, 1, 1, 0]
+    ground_truth = [1, 0, 0, 1, 0]
+
+    metrics = calculate_metrics(predictions, ground_truth)
+    assert "accuracy" in metrics
+    assert "precision" in metrics
+    assert "recall" in metrics
+    assert 0.0 <= metrics["accuracy"] <= 1.0
+
+
+def test_data_processor():
+    """Test pour DataProcessor."""
+    from sample_module import DataProcessor
+
+    processor = DataProcessor([1, 2, 3])
+    assert processor.processed is False
+    result = processor.process()
+    assert len(result) == 3
+    assert processor.processed is True
+    assert result[0]["processed"] is True
