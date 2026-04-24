@@ -12,7 +12,7 @@ on:
       - 002-TEST
       - 003-PRODUCTION
   schedule:
-    - cron: '0 2 * * *'  # Quotidien à 2h du matin
+    - cron: '0 2 * * *'
   workflow_dispatch:
 
 env:
@@ -109,3 +109,35 @@ jobs:
           name: safety-report
           path: safety-report.json
           retention-days: 30
+
+  # ═══════════════════════════════════════════════════════════
+  # JOB 3 : SNYK - Analyse approfondie des dépendances
+  # ═══════════════════════════════════════════════════════════
+  snyk:
+    name: Snyk Security Scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/python@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --severity-threshold=high
+
+  # ═══════════════════════════════════════════════════════════
+  # JOB 4 : TRIVY FS - Scan du repo (Config, Secrets, Vulns)
+  # ═══════════════════════════════════════════════════════════
+  trivy-fs:
+    name: Trivy Filesystem Scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Trivy vulnerability scanner in repo mode
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          ignore-unfixed: true
+          format: 'table'
+          exit-code: '1'
+          severity: 'CRITICAL,HIGH'
