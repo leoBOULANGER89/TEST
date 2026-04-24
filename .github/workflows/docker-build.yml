@@ -6,6 +6,7 @@ on:
       - 003-PRODUCTION
     tags:
       - 'v*' # Se déclenche sur les tags de version (ex: v1.0.1)
+
   workflow_dispatch:
 
 env:
