@@ -11,6 +11,7 @@ on:
       - 001-DEVELOPMENT
       - 002-TEST
       - 003-PRODUCTION
+  pull_request:
   schedule:
     - cron: '0 2 * * *'
   workflow_dispatch:

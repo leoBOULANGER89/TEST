@@ -12,10 +12,6 @@ on:
       - 002-TEST
       - 003-PRODUCTION
   pull_request:
-    branches:
-      - 001-DEVELOPMENT
-      - 002-TEST
-      - 003-PRODUCTION
   workflow_dispatch:
 
 env:
