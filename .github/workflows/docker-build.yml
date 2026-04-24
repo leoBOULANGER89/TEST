@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - 003-PRODUCTION
+      - 002-TEST
     tags:
       - 'v*' # Se déclenche sur les tags de version (ex: v1.0.1)
   workflow_dispatch:
