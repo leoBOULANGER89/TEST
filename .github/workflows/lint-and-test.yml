@@ -65,10 +65,10 @@ jobs:
             || true
 
   # ═══════════════════════════════════════════════════════════
-  # JOB 2 : TEST - Tests unitaires
+  # JOB 2 : TEST - Tests unitaires et d'integration
   # ═══════════════════════════════════════════════════════════
   test:
-    name: Unit Tests
+    name: Unit + Integration Tests
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
@@ -85,14 +85,11 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Create test directory
-        run: mkdir -p test_ghactions
+      - name: Run unity tests
+        run: pytest test/unity/ -v --cov=src --cov-report=xml --cov-report=term || echo "Unity tests completed"
 
-      - name: Run tests
-        run: |
-          pytest test_ghactions/ -v --cov=. --cov-report=xml --cov-report=term \
-            --ignore=notebooks --ignore=data --ignore=models \
-            || echo "Tests completed with status: $?"
+      - name: Run integration tests
+        run: pytest test/integration/ -v --cov=src --cov-report=xml --cov-report=term || echo "Integration tests completed"
 
       - name: Upload coverage report
         if: always()
