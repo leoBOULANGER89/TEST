@@ -111,20 +111,21 @@ jobs:
           path: safety-report.json
           retention-days: 30
 
-  # ═══════════════════════════════════════════════════════════
-  # JOB 3 : SNYK - In-depth dependencies analysis
-  # ═══════════════════════════════════════════════════════════
-  snyk:
-    name: Snyk Security Scan
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/python@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          args: --severity-threshold=high
+  # # ═══════════════════════════════════════════════════════════
+  # # JOB 3 : SNYK - In-depth dependencies analysis
+  # # (DESACTIVATED - Pending configuration)
+  # # ═══════════════════════════════════════════════════════════
+  # snyk:
+  #   name: Snyk Security Scan
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - name: Run Snyk to check for vulnerabilities
+  #       uses: snyk/actions/python@master
+  #       env:
+  #         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+  #       with:
+  #         args: --severity-threshold=high
 
   # ═══════════════════════════════════════════════════════════
   # JOB 4 : TRIVY FS - Scan repo (Config, Secrets, Vulns)
