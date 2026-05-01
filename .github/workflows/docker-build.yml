@@ -51,7 +51,7 @@ jobs:
       # BUILD (WITHOUT PUSH FOR SCAN)
       # ═══════════════════════════════════════════════════════════
       - name: Build image (Local)
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v7
         with:
           context: .
           file: ./production/docker/Dockerfile
@@ -78,7 +78,7 @@ jobs:
       # ═══════════════════════════════════════════════════════════
       - name: Build and push
         if: success()
-        uses: docker/build-push-action@v5
+        uses: docker/build-push-action@v7
         with:
           context: .
           file: ./production/docker/Dockerfile
